@@ -64,6 +64,73 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get product detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d51116f-bfaf-4a78-9d48-92a7e0474b5a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Total is 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.total).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"product name is 43 Piece Dinner Set\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.product_name).to.eql(\"43 Piece Dinner Set\");",
+							"});",
+							"",
+							"pm.test(\"product price is 10.00\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.product_price).to.eql(10.00);",
+							"});",
+							"",
+							"pm.test(\"path product image is /43-piece-dinner-set.png\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.product_image).to.eql(\"/43-piece-dinner-set.png\");",
+							"});",
+							"",
+							"pm.test(\"product quantify is 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.product_quantify).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"product brand is CoolKidz\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.product_brand).to.eql(\"CoolKidz\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/product/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
